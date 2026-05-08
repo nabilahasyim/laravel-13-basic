@@ -97,4 +97,27 @@ class StudentController extends Controller
         $student->delete($student);
     return to_route('student.index')->withSuccess('Data berhasil dihapus');
     }
+
+    // soft deletes
+     public function trash()
+    {
+        
+        return view('student.trash', [
+            'title' => 'Trash Student',
+            'students' => Student::onlyTrashed()->latest()->get(),
+            ]);
+    }
+
+     public function restore(Student $student)
+    {
+        $student->restore();
+    return to_route('student.trash')->withSuccess('Data berhasil dikembalikan');
+    }
+
+
+    public function forceDelete(Student $student)
+    {
+        $student->forceDelete();
+    return to_route('student.trash')->withSuccess('Data berhasil dihapus secara permanen');
+    }
 }

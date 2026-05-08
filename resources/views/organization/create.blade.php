@@ -2,15 +2,8 @@
 
     <x-slot:title>{{ $title }}</x-slot>
 
-    @session('error')
-        <div class="alert alert-danger">
-            {{ session('error') }}
-        </div>
-    @endsession
 
-
-
-    <form method="POST" action="{{ route('student.store') }}">
+    <form method="POST" action="{{ route('organization.store') }}">
         @csrf
         <div class="mb-3">
             <label for="name" class="form-label">Nama</label>
@@ -22,15 +15,15 @@
         </div>
 
         <div class="mb-3">
-            <label for="name" class="form-label">Nim</label>
-            <input type="number" class="form-control @error('nim') is-invalid @enderror id="nim" name="nim"
-                value="{{ old('nim') }}">
-            @error('nim')
+            <label for="leader_name" class="form-label">Leader</label>
+            <input type="text" class="form-control @error('leader_name') is-invalid @enderror id="leader_name"
+                name="leader_name" value="{{ old('leader_name') }}">
+            @error('leader_name')
                 <div class="alert alert-danger">{{ $message }}</div>
             @enderror
         </div>
 
-        <a href="{{ route('student.index') }}" class="btn btn-warning me-1">Cancel</a>
+        <a href="{{ route('organization.index') }}" class="btn btn-warning me-1">Cancel</a>
         <button type="submit" class="btn btn-primary">Submit</button>
 
 
